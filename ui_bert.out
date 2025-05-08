@@ -1,0 +1,32 @@
+2025-05-08 11:58:28.678500: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-08 11:58:28.691782: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746698308.706415 1880543 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746698308.710930 1880543 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746698308.724190 1880543 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746698308.724223 1880543 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746698308.724226 1880543 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746698308.724228 1880543 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-08 11:58:28.728296: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Epoch 1, Loss: 0.5854527779172417
+Epoch 2, Loss: 0.4333584203884702
+Epoch 3, Loss: 0.3525074866274683
+Epoch 4, Loss: 0.30338392139875014
+Epoch 5, Loss: 0.2690268809121011
+Epoch 6, Loss: 0.244876846352505
+Epoch 7, Loss: 0.22790124079830662
+Epoch 8, Loss: 0.21435370801684586
+Epoch 9, Loss: 0.2029928341541099
+Epoch 10, Loss: 0.19539266596724567
+Epoch 11, Loss: 0.1872869742026175
+Epoch 12, Loss: 0.180326964128721
+Epoch 13, Loss: 0.17582523924172058
+Epoch 14, Loss: 0.1729829146537125
+Epoch 15, Loss: 0.16743406627932875
+Epoch 16, Loss: 0.16528482897111726
+Epoch 17, Loss: 0.16076332813166164
+Epoch 18, Loss: 0.15846954648339404
+Epoch 19, Loss: 0.15645341788292064
+Epoch 20, Loss: 0.15354600709039543
+Accuracy: 95.55%
