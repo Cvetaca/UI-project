@@ -1,32 +1,96 @@
-2025-05-08 11:58:28.678500: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-08 11:58:28.691782: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2025-05-13 08:55:51.869908: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-13 08:55:51.881538: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746698308.706415 1880543 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746698308.710930 1880543 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746698308.724190 1880543 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746698308.724223 1880543 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746698308.724226 1880543 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746698308.724228 1880543 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-08 11:58:28.728296: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+E0000 00:00:1747119351.893789 1048970 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1747119351.897544 1048970 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1747119351.909167 1048970 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747119351.909188 1048970 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747119351.909191 1048970 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747119351.909193 1048970 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-13 08:55:51.912734: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-Epoch 1, Loss: 0.5854527779172417
-Epoch 2, Loss: 0.4333584203884702
-Epoch 3, Loss: 0.3525074866274683
-Epoch 4, Loss: 0.30338392139875014
-Epoch 5, Loss: 0.2690268809121011
-Epoch 6, Loss: 0.244876846352505
-Epoch 7, Loss: 0.22790124079830662
-Epoch 8, Loss: 0.21435370801684586
-Epoch 9, Loss: 0.2029928341541099
-Epoch 10, Loss: 0.19539266596724567
-Epoch 11, Loss: 0.1872869742026175
-Epoch 12, Loss: 0.180326964128721
-Epoch 13, Loss: 0.17582523924172058
-Epoch 14, Loss: 0.1729829146537125
-Epoch 15, Loss: 0.16743406627932875
-Epoch 16, Loss: 0.16528482897111726
-Epoch 17, Loss: 0.16076332813166164
-Epoch 18, Loss: 0.15846954648339404
-Epoch 19, Loss: 0.15645341788292064
-Epoch 20, Loss: 0.15354600709039543
-Accuracy: 95.55%
+Fold 1
+Epoch 1, Loss: 0.5792240646902609
+Epoch 2, Loss: 0.4464405405798245
+Epoch 3, Loss: 0.37678180787360455
+Epoch 4, Loss: 0.33661808439361035
+Epoch 5, Loss: 0.3102728686325258
+Epoch 6, Loss: 0.2900828311160195
+Epoch 7, Loss: 0.27760733035592994
+Epoch 8, Loss: 0.26592989129092104
+Epoch 9, Loss: 0.25803439162677383
+Epoch 10, Loss: 0.24971093593207447
+Epoch 11, Loss: 0.24501720712222827
+Epoch 12, Loss: 0.2416046480739098
+Epoch 13, Loss: 0.23578690050444642
+Epoch 14, Loss: 0.23287258126789662
+Epoch 15, Loss: 0.22933152565481046
+Fold 1 Accuracy: 92.17%
+Fold 2
+Epoch 1, Loss: 0.5749420397198823
+Epoch 2, Loss: 0.4428359405962775
+Epoch 3, Loss: 0.37522020096731407
+Epoch 4, Loss: 0.33705633006856184
+Epoch 5, Loss: 0.3107168594205128
+Epoch 6, Loss: 0.29133671658530913
+Epoch 7, Loss: 0.27757300428063214
+Epoch 8, Loss: 0.26725432717013786
+Epoch 9, Loss: 0.2593114192260954
+Epoch 10, Loss: 0.2529272389722513
+Epoch 11, Loss: 0.24573012448085368
+Epoch 12, Loss: 0.24144584756376547
+Epoch 13, Loss: 0.2377687277858328
+Epoch 14, Loss: 0.23348797099907634
+Epoch 15, Loss: 0.22932730750947794
+Fold 2 Accuracy: 91.97%
+Fold 3
+Epoch 1, Loss: 0.5791216081911283
+Epoch 2, Loss: 0.44708244741591135
+Epoch 3, Loss: 0.37940582510296206
+Epoch 4, Loss: 0.3379676694124588
+Epoch 5, Loss: 0.3118576502964005
+Epoch 6, Loss: 0.29406056974801487
+Epoch 7, Loss: 0.2802509935769041
+Epoch 8, Loss: 0.2691675914069063
+Epoch 9, Loss: 0.2623539892629452
+Epoch 10, Loss: 0.25491297702762317
+Epoch 11, Loss: 0.24829437695647197
+Epoch 12, Loss: 0.24489026883097945
+Epoch 13, Loss: 0.23987591508586922
+Epoch 14, Loss: 0.2355659711672681
+Epoch 15, Loss: 0.2337133852760602
+Fold 3 Accuracy: 92.43%
+Fold 4
+Epoch 1, Loss: 0.5667107717121699
+Epoch 2, Loss: 0.4391331128968009
+Epoch 3, Loss: 0.37520947685402695
+Epoch 4, Loss: 0.3356347777629904
+Epoch 5, Loss: 0.31011737026070635
+Epoch 6, Loss: 0.2910747953096607
+Epoch 7, Loss: 0.2772016188916427
+Epoch 8, Loss: 0.2660298477785602
+Epoch 9, Loss: 0.25916039719479705
+Epoch 10, Loss: 0.25154472462204774
+Epoch 11, Loss: 0.24455238883816155
+Epoch 12, Loss: 0.24077614237736855
+Epoch 13, Loss: 0.2365069495794668
+Epoch 14, Loss: 0.2327173823937134
+Epoch 15, Loss: 0.23057402247689507
+Fold 4 Accuracy: 91.61%
+Fold 5
+Epoch 1, Loss: 0.5900283826225722
+Epoch 2, Loss: 0.45237519504221785
+Epoch 3, Loss: 0.38050202259344573
+Epoch 4, Loss: 0.3400850517793059
+Epoch 5, Loss: 0.3126118904347535
+Epoch 6, Loss: 0.2931249633163888
+Epoch 7, Loss: 0.27906307557439264
+Epoch 8, Loss: 0.2681621612979508
+Epoch 9, Loss: 0.2590110453105969
+Epoch 10, Loss: 0.2532707507068482
+Epoch 11, Loss: 0.2475694254066891
+Epoch 12, Loss: 0.243290274186608
+Epoch 13, Loss: 0.23855661001611883
+Epoch 14, Loss: 0.23459513504625204
+Epoch 15, Loss: 0.232595898699565
+Fold 5 Accuracy: 92.48%
