@@ -3,28 +3,20 @@ from sklearn.model_selection import train_test_split
 from transformers import BertTokenizer, BertModel
 import torch
 from torch.utils.data import DataLoader, Dataset
-
 import torch.nn as nn
+from sklearn.model_selection import KFold
 
-n_epochs = 20
+n_epochs = 15
 
 
 
 # Load the dataset
-fake=pd.read_csv('Fake.csv')
-true=pd.read_csv('True.csv')
+df=pd.read_csv('full_dataset.csv')
 
-fake['label']=0
-true['label']=1
-
-df=pd.concat([fake,true],axis=0,ignore_index=True)
-df.drop(['date','title','subject'],axis=1,inplace=True)
 
 X = df['text']
-y = df['label']  # 0 for fake news, 1 for genuine
+y = df['label'].apply(lambda x: 0 if x == 'FAKE' else 1)  # Convert labels to integers
 
-# Split into train and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Load BERT tokenizer and model
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
@@ -57,13 +49,6 @@ class NewsDataset(Dataset):
             'label': torch.tensor(label, dtype=torch.long)
         }
 
-# Create DataLoader
-train_dataset = NewsDataset(X_train, y_train, tokenizer)
-test_dataset = NewsDataset(X_test, y_test, tokenizer)
-
-train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
-test_loader = DataLoader(test_dataset, batch_size=16)
-
 # Define the classification model
 class FakeNewsClassifier(nn.Module):
     def __init__(self, bert_model):
@@ -78,45 +63,60 @@ class FakeNewsClassifier(nn.Module):
         pooled_output = outputs.pooler_output
         return self.fc(pooled_output)
 
-# Initialize model, loss, and optimizer
-model = FakeNewsClassifier(bert_model)
-criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=2e-5)
-
-# Training loop
+# 5-Fold Cross Validation
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model.to(device)
 
-for epoch in range(n_epochs):
-    model.train()
-    total_loss = 0
-    for batch in train_loader:
-        input_ids = batch['input_ids'].to(device)
-        attention_mask = batch['attention_mask'].to(device)
-        labels = batch['label'].to(device)
+fold = 1
+for train_index, val_index in kf.split(X):
+    print(f"Fold {fold}")
+    X_train, X_val = X.iloc[train_index], X.iloc[val_index]
+    y_train, y_val = y.iloc[train_index], y.iloc[val_index]
 
-        optimizer.zero_grad()
-        outputs = model(input_ids, attention_mask)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
+    train_dataset = NewsDataset(X_train, y_train, tokenizer)
+    val_dataset = NewsDataset(X_val, y_val, tokenizer)
 
-        total_loss += loss.item()
-    print(f"Epoch {epoch + 1}, Loss: {total_loss / len(train_loader)}")
+    train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=16)
 
-# Evaluation
-model.eval()
-correct = 0
-total = 0
-with torch.no_grad():
-    for batch in test_loader:
-        input_ids = batch['input_ids'].to(device)
-        attention_mask = batch['attention_mask'].to(device)
-        labels = batch['label'].to(device)
+    model = FakeNewsClassifier(bert_model)
+    model.to(device)
 
-        outputs = model(input_ids, attention_mask)
-        _, predicted = torch.max(outputs, 1)
-        total += labels.size(0)
-        correct += (predicted == labels).sum().item()
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=2e-5)
 
-print(f"Accuracy: {correct / total * 100:.2f}%")
+    # Training loop
+    for epoch in range(n_epochs):
+        model.train()
+        total_loss = 0
+        for batch in train_loader:
+            input_ids = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
+            labels = batch['label'].to(device)
+
+            optimizer.zero_grad()
+            outputs = model(input_ids, attention_mask)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            total_loss += loss.item()
+        print(f"Epoch {epoch + 1}, Loss: {total_loss / len(train_loader)}")
+
+    # Validation
+    model.eval()
+    correct = 0
+    total = 0
+    with torch.no_grad():
+        for batch in val_loader:
+            input_ids = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
+            labels = batch['label'].to(device)
+
+            outputs = model(input_ids, attention_mask)
+            _, predicted = torch.max(outputs, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+
+    print(f"Fold {fold} Accuracy: {correct / total * 100:.2f}%")
+    fold += 1
